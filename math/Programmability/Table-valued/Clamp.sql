@@ -1,6 +1,6 @@
 ﻿create function math.Clamp(
     @f float = 0.
-  , @x float = 0.
+  , @x float = -1.
   , @y float = 1.
 )
 returns table
