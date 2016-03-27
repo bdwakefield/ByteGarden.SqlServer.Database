@@ -1,6 +1,6 @@
 ﻿create function crypto.Pbkdf2 (
-    @password varbinary(8000) = 0x70617373776F7264
-  , @salt varbinary(7996) = 0x73616C74
+    @password varbinary(max) = 0x70617373776F7264
+  , @salt varbinary(max) = 0x73616C74
   , @iterations int = 1
   , @derivedKeyLength int = 32
 )
@@ -13,7 +13,6 @@ begin;
     declare @l int = (@derivedKeyLength + @hmacLength - 1) / @hmacLength;
     declare @r int = @derivedKeyLength - (@l - 1) * @hmacLength;
     declare @derivedKey varbinary(max) = Cast('' as varbinary(max));
-    declare @u varbinary(8000);
     declare @uA binary(32);
     declare @uB binary(32);
 
@@ -21,10 +20,9 @@ begin;
     begin;
         declare @j int = 1;
 
-        select @u = @salt + Cast(@i as binary(4))
-             , @uA = uA.Bytes
+        select @uA = uA.Bytes
              , @uB = uA.Bytes
-        from crypto.Hmac(@password, @u) as uA;
+        from crypto.Hmac(@password, @salt + Cast(@i as binary(4))) as uA;
 
         while @j < @iterations
         begin;
