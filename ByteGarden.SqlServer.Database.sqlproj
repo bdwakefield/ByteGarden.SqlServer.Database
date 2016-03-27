@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ByteGarden.SqlServer.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{bcd3b01c-6787-468d-b60e-963b8fb71877}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ByteGarden.SqlServer.Database</RootNamespace>
+    <AssemblyName>ByteGarden.SqlServer.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+    <Recovery>SIMPLE</Recovery>
+    <Trustworthy>False</Trustworthy>
+    <IsEncryptionOn>True</IsEncryptionOn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="crypto" />
+    <Folder Include="crypto\Programmability" />
+    <Folder Include="crypto\Programmability\Scalar-valued" />
+    <Folder Include="crypto\Programmability\Table-valued" />
+    <Folder Include="crypto\Views" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Programmability" />
+    <Folder Include="dbo\Programmability\Functions" />
+    <Folder Include="dbo\Programmability\Functions\Scalar-valued" />
+    <Folder Include="math" />
+    <Folder Include="math\Programmability" />
+    <Folder Include="math\Programmability\Table-valued" />
+    <Folder Include="regex" />
+    <Folder Include="regex\Programmability" />
+    <Folder Include="regex\Programmability\Functions" />
+    <Folder Include="regex\Programmability\Functions\Scalar-valued" />
+    <Folder Include="regex\Programmability\Functions\Table-valued" />
+    <Folder Include="string" />
+    <Folder Include="string\Programmability" />
+    <Folder Include="string\Programmability\Functions" />
+    <Folder Include="string\Programmability\Functions\Scalar-valued" />
+    <Folder Include="string\Programmability\Functions\Table-valued" />
+    <Folder Include="web" />
+    <Folder Include="web\Programmability" />
+    <Folder Include="web\Programmability\Functions" />
+    <Folder Include="web\Programmability\Functions\Scalar-valued" />
+    <Folder Include="web\Programmability\Functions\Table-valued" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.txt" />
+    <None Include="ByteGarden.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="crypto\Programmability\Scalar-valued\Pbkdf2.sql" />
+    <Build Include="crypto\Programmability\Table-valued\Hmac.sql" />
+    <Build Include="crypto\Programmability\Table-valued\IsEqual.sql" />
+    <Build Include="crypto\Programmability\Table-valued\Totp.sql" />
+    <Build Include="crypto\Views\vw_RandomBytes16.sql" />
+    <Build Include="crypto\Views\vw_RandomBytes32.sql" />
+    <Build Include="crypto\Views\vw_RandomBytes4.sql" />
+    <Build Include="crypto\Views\vw_RandomBytes8.sql" />
+    <Build Include="crypto\crypto.sql" />
+    <Build Include="dbo\Programmability\Functions\Scalar-valued\Hash.sql" />
+    <Build Include="dbo\Programmability\Functions\Scalar-valued\LogicalAnd.sql" />
+    <Build Include="dbo\Programmability\Functions\Scalar-valued\LogicalNot.sql" />
+    <Build Include="dbo\Programmability\Functions\Scalar-valued\LogicalOr.sql" />
+    <Build Include="dbo\Programmability\Functions\Scalar-valued\LogicalSet.sql" />
+    <Build Include="dbo\Programmability\Functions\Scalar-valued\LogicalXor.sql" />
+    <Build Include="math\Programmability\Table-valued\Normalize.sql" />
+    <Build Include="math\Programmability\Table-valued\RandomAscii.sql" />
+    <Build Include="math\Programmability\Table-valued\RandomBigInt.sql" />
+    <Build Include="math\Programmability\Table-valued\RandomDate.sql" />
+    <Build Include="math\Programmability\Table-valued\RandomInt.sql" />
+    <Build Include="math\Programmability\Table-valued\RandomTime.sql" />
+    <Build Include="math\Programmability\Table-valued\RangeDate.sql" />
+    <Build Include="math\Programmability\Table-valued\RangeInt.sql" />
+    <Build Include="math\Programmability\Table-valued\RangeSmallInt.sql" />
+    <Build Include="math\Programmability\Table-valued\RangeTime.sql" />
+    <Build Include="math\math.sql" />
+    <Build Include="regex\Programmability\Functions\Scalar-valued\IsMatch.sql" />
+    <Build Include="regex\Programmability\Functions\Scalar-valued\Match.sql" />
+    <Build Include="regex\Programmability\Functions\Scalar-valued\Replace.sql" />
+    <Build Include="regex\Programmability\Functions\Table-valued\Matches.sql" />
+    <Build Include="regex\Programmability\Functions\Table-valued\RegexOptions.sql" />
+    <Build Include="regex\regex.sql" />
+    <Build Include="string\Programmability\Functions\Scalar-valued\Trim.sql" />
+    <Build Include="string\Programmability\Functions\Scalar-valued\TrimEnd.sql" />
+    <Build Include="string\Programmability\Functions\Scalar-valued\TrimStart.sql" />
+    <Build Include="string\Programmability\Functions\Table-valued\IsNullOrWhitespace.sql" />
+    <Build Include="string\Programmability\Functions\Table-valued\PadEnd.sql" />
+    <Build Include="string\Programmability\Functions\Table-valued\PadStart.sql" />
+    <Build Include="string\string.sql" />
+    <Build Include="web\Programmability\Functions\Scalar-valued\GET.sql" />
+    <Build Include="web\Programmability\Functions\Table-valued\HttpRequestCacheLevel.sql" />
+    <Build Include="web\web.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dbo\Programmability\HashFunctions.cs" />
+    <Compile Include="dbo\Programmability\LogicalFunctions.cs" />
+    <Compile Include="regex\Programmability\RegexFunctions.cs" />
+    <Compile Include="string\Programmability\StringFunctions.cs" />
+    <Compile Include="web\Programmability\WebFunctions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+  </ItemGroup>
+</Project>
