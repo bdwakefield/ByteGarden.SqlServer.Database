@@ -14,18 +14,21 @@ returns table
 with schemabinding as
 return (
     select case @timePart
-               when N'millisecond' then DateAdd(Millisecond, [Iterator].n, Anchor.t)
-               when N'second' then DateAdd(Second, [Iterator].n, Anchor.t)
-               when N'minute' then DateAdd(Minute, [Iterator].n, Anchor.t)
-               when N'hour' then DateAdd(Hour, [Iterator].n, Anchor.t)
+               when N'millisecond' then DateAdd(millisecond, [Iterator].n, Anchor.t)
+               when N'second' then DateAdd(second, [Iterator].n, Anchor.t)
+               when N'minute' then DateAdd(minute, [Iterator].n, Anchor.t)
+               when N'hour' then DateAdd(hour, [Iterator].n, Anchor.t)
            end as t
-    from math.RangeInt (0, Abs(
-        case @timePart
-            when N'millisecond' then DateDiff(Millisecond, @x, @y)
-            when N'second' then DateDiff(Second, @x, @y)
-            when N'minute' then DateDiff(Minute, @x, @y)
-            when N'hour' then DateDiff(Hour, @x, @y)
-        end
-    )) as [Iterator]
+    from math.RangeInt (
+        0
+      , Abs(
+            case @timePart
+                when N'millisecond' then DateDiff(millisecond, @x, @y)
+                when N'second' then DateDiff(second, @x, @y)
+                when N'minute' then DateDiff(minute, @x, @y)
+                when N'hour' then DateDiff(hour, @x, @y)
+            end
+        )
+    ) as [Iterator]
     cross apply (values(case when @x < @y then @x else @y end)) as Anchor (t)
 );

@@ -5,6 +5,6 @@
 returns table
 with schemabinding as
 return (
-    select DateAdd(day, RandomIntBetween.n, case when @x < @y then @x else @y end) as d
-    from math.RandomIntBetween(0, Abs(DateDiff(day, @x, @y)))
+    select DateAdd(day, RandomOffset.n, case when @x < @y then @x else @y end) as d
+    from math.RandomIntBetween(0, Abs(DateDiff(day, @x, @y))) as RandomOffset
 );

@@ -5,7 +5,7 @@
 returns table
 with schemabinding as
 return (
-    select Cast(Round(c.f, 0, 0) as int) as n
+    select Cast(Round([Normalize].f, 0, 0) as int) as n
     from (values(
         case when @x < @y then @x else @y end
       , case when @y > @x then @y else @x end
@@ -17,5 +17,5 @@ return (
       , 2147483647
       , a.[Min] - 0.5
       , a.[Max] + 0.5
-    ) as c
+    )
 );
