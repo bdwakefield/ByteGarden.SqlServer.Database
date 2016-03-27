@@ -1,10 +1,7 @@
-﻿create function math.RandomDate(
-    @x date = N'0001-01-01'
-  , @y date = N'9999-12-31'
-)
+﻿create function math.RandomDate()
 returns table
 with schemabinding as
 return (
-    select DateAdd(day, RandomOffset.n, case when @x < @y then @x else @y end) as d
-    from math.RandomIntBetween(0, Abs(DateDiff(day, @x, @y))) as RandomOffset
+    select DateAdd(day, RandomOffset.n, N'0001-01-01') as d
+    from math.RandomIntBetween(0, 3652058) as RandomOffset
 );
