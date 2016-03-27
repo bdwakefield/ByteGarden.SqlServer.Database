@@ -7,9 +7,8 @@ returns table
 with schemabinding as
 return (
     select case
-               when [Difference].f = 0 then @f
-               when [Difference].f < @x then @x
-               when [Difference].f > @y then @y
+               when @f < @x then @x
+               when @f > @y then @y
+               else @f
            end as f
-    from (values(@x - @y)) [Difference] (f)
 );
