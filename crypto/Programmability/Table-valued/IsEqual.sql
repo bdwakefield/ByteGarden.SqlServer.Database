@@ -5,10 +5,10 @@
 /*
     What? Compares two variable length binary strings byte by byte in constant time.
 
-    When? Cryptography, Gaming.
+    When? Cryptography, Gaming
 
     Why? Given the strings 0x1234 and 0x1213: a simple equality comparison will stop processing after
-         it hits the first mismatch at byte position 3. An opponent who only knows @x can exploit this
+         it hits the first difference at byte position 3. An opponent who only knows @x can exploit this
          feature to guess @y by trying thousands of comparisons and gathering statistics on how long
          each one took.
 
@@ -17,17 +17,17 @@
          better guesses than ones that take less than 50 milliseconds. Thus, if a comparison takes 50
          milliseconds then @x is a 50% match of @y (from byte positions 1 through 8).
 
-    How? 1. cache the length of @x into [@xLength] (n)
-         2. cache a range of integers from 1 to XLength.n into [Iterator] (n)
-         3. bail early if the lengths of @x and @y are not equal
-         4. XOR nth byte of @x with nth byte of @y
-         5. SUM all XOR results, cast result to bit (0 will stay 0, any other number will become 1)
-         6. flip the final bit to retain "IsEqual" semantics
+    How? 1) cache the length of @x into [@xLength] (n)
+         2) cache a range of integers from 1 to XLength.n into [Iterator] (n)
+         3) bail early if the lengths of @x and @y are not equal
+         4) XOR nth byte of @x with nth byte of @y
+         5) SUM all XOR results then cast to bit (0 will stay 0, any other number will become 1)
+         6) invert the result to match "IsEqual" naming convention
  */
 returns table
 with schemabinding as
 return (
-    select Cast(Sum(Substring(@x, [Iterator].n, 1) ^ Cast(Substring(@y, [Iterator].n, 1) as tinyint) /* 4 */) as bit /* 5 */) ^ 1 /* 6 */ as b
+    select ~/* 6 */Cast(Sum(/* 5 */Substring(@x, [Iterator].n, 1) ^ /* 4 */Cast(Substring(@y, [Iterator].n, 1) as tinyint)) as bit) as b
     from (values(DataLength(@x))) as [@xLength] (n) /* 1 */
     cross apply math.RangeInt(1, [@xLength].n) as [Iterator] /* 2 */
     where Abs([@xLength].n - DataLength(@y)) = 0 /* 3 */
