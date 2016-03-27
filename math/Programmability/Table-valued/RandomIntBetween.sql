@@ -1,6 +1,6 @@
 ﻿create function math.RandomIntBetween(
-    @x bigint = -2147483648
-  , @y bigint = 2147483647
+    @x int = -2147483648
+  , @y int = 2147483647
 )
 returns table
 with schemabinding as
