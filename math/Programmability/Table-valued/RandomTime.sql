@@ -5,6 +5,6 @@
 returns table
 with schemabinding as
 return (
-    select DateAdd(millisecond, RandomInt.n, case when @x < @y then @x else @y end) as t
-    from math.RandomInt (0, Abs(DateDiff(millisecond, @x, @y))) as RandomInt
+    select DateAdd(millisecond, RandomIntBetween.n, case when @x < @y then @x else @y end) as t
+    from math.RandomIntBetween(0, Abs(DateDiff(millisecond, @x, @y)))
 );

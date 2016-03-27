@@ -140,6 +140,7 @@
     <Build Include="math\Programmability\Table-valued\RandomTinyInt.sql" />
     <Build Include="crypto\Views\vw_RandomBytes1.sql" />
     <Build Include="crypto\Views\vw_RandomBytes2.sql" />
+    <Build Include="math\Programmability\Table-valued\RandomIntBetween.sql" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dbo\Programmability\HashFunctions.cs" />

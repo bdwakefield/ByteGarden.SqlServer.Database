@@ -5,6 +5,6 @@
 returns table
 with schemabinding as
 return (
-    select Char(a.n) as c
-    from math.RandomTinyInt(@x, @y) as a
+    select Char(RandomIntBetween.n) as c
+    from math.RandomIntBetween(@x, @y)
 );
