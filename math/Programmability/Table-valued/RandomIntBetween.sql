@@ -12,9 +12,9 @@ return (
     )) a ([Min], [Max])
     cross join math.RandomInt()
     cross apply math.[Normalize](
-        RandomInt.n
-      , -2147483648
-      , 2147483647
+        Cast(RandomInt.n as float)
+      , -2147483648.
+      , 2147483647.
       , a.[Min] - 0.5
       , a.[Max] + 0.5
     )
