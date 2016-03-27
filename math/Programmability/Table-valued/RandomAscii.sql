@@ -1,10 +1,10 @@
 ﻿create function math.RandomAscii(
-    @x char = 'A'
-  , @y char = 'Z'
+    @x tinyint = 0
+  , @y tinyint = 255
 )
 returns table
 with schemabinding as
 return (
     select Char(a.n) as c
-    from math.RandomInt(Ascii(@x), Ascii(@y)) as a
+    from math.RandomInt(@x, @y) as a
 );

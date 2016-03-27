@@ -110,7 +110,6 @@
     <Build Include="dbo\Programmability\Functions\Scalar-valued\LogicalSet.sql" />
     <Build Include="dbo\Programmability\Functions\Scalar-valued\LogicalXor.sql" />
     <Build Include="math\Programmability\Table-valued\Normalize.sql" />
-    <Build Include="math\Programmability\Table-valued\RandomAscii.sql" />
     <Build Include="math\Programmability\Table-valued\RandomBigInt.sql" />
     <Build Include="math\Programmability\Table-valued\RandomDate.sql" />
     <Build Include="math\Programmability\Table-valued\RandomInt.sql" />
@@ -136,6 +135,8 @@
     <Build Include="web\Programmability\Functions\Scalar-valued\GET.sql" />
     <Build Include="web\Programmability\Functions\Table-valued\HttpRequestCacheLevel.sql" />
     <Build Include="web\web.sql" />
+    <Build Include="math\Programmability\Table-valued\RandomAscii.sql" />
+    <Build Include="math\Programmability\Table-valued\Clamp.sql" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dbo\Programmability\HashFunctions.cs" />
